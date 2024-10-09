@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculate body mass index</title>
+</head>
+<body>
+<style>
+    main {
+        width: 700px;
+        height: 400px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    input {
+        height: 25px;
+        width: 200px;
+        margin: 0 10px;
+    }
+    .result {
+        border: 1px solid #ccc;
+        width: 200px;
+        height: 25px;
+        margin: 0 10px;
+        text-align: center;
+        padding-top: 5px;
+    }
+    .container {
+        display: flex;
+    }
+    span {
+        transform: translateY(5px);
+    }
+    button {
+        width: 100px;
+        height: 25px;
+        margin-left: 10px;
+    }
+
+    .display {
+        color: aqua;
+        font-size: 20px;
+        margin-left: 10px;
+    }
+</style>
+<main>
+    <div class="container">
+        <input type="text" placeholder="Input weight" class = "input-weight">
+        <input type="text" placeholder="Input height" class = "input-height">
+        <span>====></span>
+        <div class="result"></div>
+    </div>
+    <p class="display">BMI</p>
+    <button onclick="submit()">submit</button>
+</main>
+
+<script>
+    function submit() {
+        let weight = parseFloat(document.querySelector(".input-weight").value);
+        let height = parseFloat(document.querySelector(".input-height").value);
+        let bmi = weight / (height ^ 2);
+        let result = "";
+
+        if (isNaN(weight) && isNaN(height)){
+            result = "please enter number"
+        } else if (weight && height) {
+            result = bmi;
+        }else {
+            result = "please enter number"
+        }
+        document.querySelector('.result').innerHTML = result;
+
+        if (bmi < 18.5) {
+            result = "Underweight"
+        } else if (bmi < 25) {
+            result = "Normal"
+        } else if (bmi < 30) {
+            result = "Overweight"
+        } else {
+            result = "Obese"
+        }
+        document.querySelector('.display').innerHTML = result;
+    }
+</script>
+</body>
+</html>
